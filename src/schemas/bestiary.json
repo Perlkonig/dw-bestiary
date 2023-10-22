@@ -1,0 +1,87 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "$id": "https://www.perlkonig.com/dungeonworld/bestiary/1-0-0.json#",
+    "title": "Dungeon World Bestiary",
+    "description": "Structure of a Dungeon World bestiary",
+    "definitions": {
+        "tags": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "monster": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "category": {
+                    "description": "This is how the system knows where to put this monster in the bestiary. Not present in newly generated creatures, but should be present when loading existing ones.",
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "media": {
+                    "description": "Only hyperlinks to media are acceptable. No embedding, for space reasons.",
+                    "type": "string",
+                    "format": "uri"
+                },
+                "tags": {
+                    "type": "object",
+                    "properties": {
+                        "general": {
+                            "$ref": "#/definitions/tags"
+                        },
+                        "combat": {
+                            "$ref": "#/definitions/tags"
+                        },
+                        "special": {
+                            "$ref": "#/definitions/tags"
+                        }
+                    },
+                    "required": ["general", "combat", "special"],
+                    "additionalProperties": false
+                },
+                "attack": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "damage": {
+                            "type": "string"
+                        }
+                    },
+                    "required": ["name", "damage"],
+                    "additionalProperties": false
+                },
+                "hp": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "armor": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "default": 0
+                },
+                "instinct": {
+                    "type": "string"
+                },
+                "moves": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": ["name", "tags", "attack", "hp", "armor", "instinct"],
+            "additionalProperties": false
+        }
+    },
+    "type": "array",
+    "items": {
+        "$ref": "#/definitions/monster"
+    }
+}

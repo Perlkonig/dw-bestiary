@@ -1,0 +1,49 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "$id": "https://www.perlkonig.com/dungeonworld/monstergen/1-0-0.json#",
+    "title": "Dungeon World Monster Generator Questionnaire",
+    "description": "Structure of a Dungeon World monster generator questionnaire responses",
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string"
+        },
+        "group": {
+            "type": "string"
+        },
+        "size": {
+            "type": "string"
+        },
+        "atkname": {
+            "type": "string"
+        },
+        "knownfor": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "qualities": {
+            "type": "string"
+        },
+        "instinct": {
+            "type": "string"
+        },
+        "moves": {
+            "type": "string"
+        },
+        "protection": {
+            "type": "string"
+        },
+        "armaments": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "description": {
+            "type": "string"
+        }
+    },
+    "additionalProperties": false
+}

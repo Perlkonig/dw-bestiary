@@ -1,0 +1,133 @@
+{
+    "name": "The Lich",
+    "almanac": [
+        {
+            "type": "region",
+            "name": "Chalkwood Downs",
+            "tags": ["temperate", "wooded highland", "perilous", "neutral"],
+            "description": "* Severe, rocky hills\n* Jutting slabs of pale stone\n* Sparse, slender, white-leaved trees\n* Roots like snakes, reaching into rock\n* Knee-high yellow grass\n* Spring: carpet of pale yellow flowers\n* Summer: pale stone, blindingly bright\n* Fall: leaves, black and drifting\n* Winter: ceaseless, knifelike wind",
+            "children": [
+                {
+                    "type": "area",
+                    "name": "Skysplitter",
+                    "tags": ["mountain", "perilous", "neutral"],
+                    "description": "A needle-like spire of rock, rising aberrantly from the surrounding downs, always further away than it appears.\n\n* What does local legend say about Skyplitter's needle-like appearance?\n* What are the roots of the mountain said to touch upon?\n* What calls Skysplitter's peak home?"
+                },
+                {
+                    "type": "encounter",
+                    "name": "Missionaries",
+                    "tags": ["travelers", "good"],
+                    "description": "A pair of priests escorted by four members of a holy fighting order, seeking to establish a shrine on the slopes of Skysplitter."
+                },
+                {
+                    "type": "site",
+                    "name": "The Ribs",
+                    "tags": ["landmark", "unsafe", "neutral"],
+                    "description": "A colonnade of curved white pillars resembling the ribcage of some great beast, half-submerged in the earth."
+                },
+                {
+                    "type": "area",
+                    "name": "Delver's Defile",
+                    "tags": ["ravine", "perilous", "evil"],
+                    "description": "A narrow ravine slicing through fifty feet of rock to a clear trickle of water. A desiccated corpse is wedged in a narrow spot halfway down. Upstream, the water emerges from a crack in the rock that opens into a natural cave system. Something glitters in the streambed.",
+                    "moves": [
+                        "When you ***venture into the caves***, roll +WIS: **on a 10+**, You find your way to the vein of precious metal deep within, but getting out is another matter; **on a 7-9**, you encounter a foul denizen or deadly hazard (ask the GM what)."
+                    ]
+                },
+                {
+                    "type": "site",
+                    "name": "The Toothy Stair",
+                    "tags": ["landmark", "perilous", "neutral"],
+                    "description": "A natural stair ascending a cliff face, each step a sharp edge of rock that allows an easy to climb for the well-shod, but poses a potentially crippling hazard to anyone who loses their footing."
+                },
+                {
+                    "type": "site",
+                    "name": "White Walker Den",
+                    "tags": ["lair", "perilous", "evil"],
+                    "description": "Two large openings in a rocky hillside lead into caves which are home to a mated pair of White Walkers. During the day the creatures stay inside; at night one or the other goes hunting. Amongst the detritus in their “trophy room” is the Seal of Sardoza.",
+                    "children": [
+                        {
+                            "type": "treasure",
+                            "name": "Seal of Sardoza",
+                            "tags": [],
+                            "description": "A stone disc one hand wide, carved with an ancient seal: a stag's skull wreathed in thorny vines. Of great value to collectors, historians, or scions of Sardoza.",
+                            "weight": 1,
+                            "value": 200
+                        }
+                    ]
+                },
+                {
+                    "type": "site",
+                    "name": "Ghost Hollow",
+                    "tags": ["hollow", "perilous"],
+                    "description": "On warm mornings in winter and spring, thick mist fills the hollows and vales of the Downs. In one such depression, the mist grows so thick that it obscures the presence of a deep crevice narrow enough to leap across, but deadly to any who step into it unawares.",
+                    "moves": [
+                        "When you ***cross Ghost Hollow on a misty morning***, roll +WIS: **on a 10+**, you notice the drop, and not a moment too soon; **on a 7-9**, you step into it, but you've got a split-second to save yourself from falling to a fate of the GM's choosing."
+                    ]
+                },
+                {
+                    "type": "monster",
+                    "name": "Marrowsup",
+                    "tags": ["horde", "flying"],
+                    "description": "Gray-feathered carrion birds known to attack the wounded as well as the dead.",
+                    "instincts": [
+                        "Swarm them",
+                        "Savage a preexisting injury",
+                        "Pierce to the bone, and hang on"
+                    ],
+                    "damage": "beak 1d4 (hand, 1 piercing)",
+                    "hp": 2,
+                    "armor": 0
+                },
+                {
+                    "type": "monster",
+                    "name": "White Walker",
+                    "tags": [
+                        "solitary",
+                        "large",
+                        "vulnerable (fire, sunlight)"
+                    ],
+                    "description": "Bone-colored bipeds that stalk the Downs at night like the ghosts of giants. Their bellowing can be heard echoing from ridge to ravine at dusk and dawn.",
+                    "instincts": [
+                        "Regenerate by consuming flesh",
+                        "Seize them",
+                        "Hurl them away"
+                    ],
+                    "damage": "sickle-like claws 1d10+2 (reach, messy, forceful)",
+                    "hp": 16,
+                    "armor": 2
+                }
+            ]
+        }
+    ],
+    "story": [
+        {
+            "name": "The Beginning",
+            "text": "This is chapter one. We created our characters and the world and learned more about the starting area."
+        },
+        {
+            "text": "This is chapter two. It doesn't have a title. We all died."
+        }
+    ],
+    "people": [
+        {
+            "player": "Zarko",
+            "name": "Big Guy",
+            "class": "Fighter",
+            "level": 1,
+            "story": "Under construction"
+        },
+        {
+            "player": "Shelley",
+            "name": "Little Guy",
+            "class": "Thief",
+            "level": 1,
+            "story": "Under construction"
+        },
+        {
+            "name": "Jonathan",
+            "tags": ["vendor", "lawful"],
+            "description": "Fabulously wealthy"
+        }
+    ]
+}

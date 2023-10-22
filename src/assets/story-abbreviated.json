@@ -1,0 +1,118 @@
+{
+    "name": "The Lich",
+    "almanac": [
+        {
+            "type": "region",
+            "name": "Otthon (\"Home of the People\")",
+            "tags": ["Human kingdom", "unsafe", "lawful", "civilized"],
+            "description": "Test description.\n\nShould include multiple paragraphs.",
+            "moves": ["Move 1", "Move 2"],
+            "children": [
+                {
+                    "type": "area",
+                    "name": "County Lazlo",
+                    "tags": [
+                        "farmland",
+                        "safe",
+                        "lawful",
+                        "civilized",
+                        "resource (marble)"
+                    ],
+                    "children": [
+                        {
+                            "type": "steading",
+                            "name": "Whitestone",
+                            "tags": [
+                                "Human town",
+                                "safe",
+                                "lawful",
+                                "civilized",
+                                "moderate",
+                                "growing",
+                                "guard",
+                                "religion (Tuzhela)",
+                                "personage (Count Lazlo, High Priestess Antonia, Szabol the Smith)",
+                                "enmity (Fenkin Village)"
+                            ],
+                            "children": [
+                                {
+                                    "type": "site",
+                                    "name": "Whitestone Keep",
+                                    "tags": [
+                                        "keep",
+                                        "safe",
+                                        "lawful",
+                                        "civilized",
+                                        "defensible"
+                                    ]
+                                },
+                                {
+                                    "type": "site",
+                                    "name": "Church of Tuzhela (Goddess of Home and Hearth)",
+                                    "tags": [
+                                        "temple",
+                                        "safe",
+                                        "lawful",
+                                        "civilized",
+                                        "holy"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "area",
+                    "name": "Heartwood",
+                    "tags": [
+                        "forest",
+                        "unsafe",
+                        "neutral",
+                        "resource (game)",
+                        "property (Count Lazlo)"
+                    ]
+                },
+                {
+                    "type": "area",
+                    "name": "The Fell-Fen",
+                    "tags": [
+                        "wetland",
+                        "perilous",
+                        "neutral",
+                        "difficult",
+                        "contested (Count Lazlo/Chief Yellow Eye)"
+                    ],
+                    "children": [
+                        {
+                            "type": "steading",
+                            "name": "Vaankus",
+                            "tags": [
+                                "Fenkin village",
+                                "perilous",
+                                "neutral",
+                                "poor",
+                                "steady",
+                                "watch",
+                                "religion (Vaank)",
+                                "personage (Chief Yellow Eye, Swamp-Doctor Rillik)",
+                                "enmity (Whitestone)"
+                            ],
+                            "children": [
+                                {
+                                    "type": "site",
+                                    "name": "Shrine of Vaank (Salamander god of Wetlands)",
+                                    "tags": ["shrine", "neutral", "holy"]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "site",
+                            "name": "Bogbeast Burrow",
+                            "tags": ["lair", "perilous", "neutral", "difficult"]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,31 @@
+{
+    "name": "dw-monstergen",
+    "private": true,
+    "version": "1.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "set NODE_ENV=development && vite --host",
+        "build": "npx rimraf dist && set NODE_ENV=production && vite build --base=/bestiary",
+        "preview": "vite preview",
+        "check": "svelte-check --tsconfig ./tsconfig.json",
+        "format": "prettier --write --plugin prettier-plugin-svelte .",
+        "schemas": "npx json2ts -i src/schemas/bestiary.json -o src/schemas/bestiary.d.ts && npx json2ts -i src/schemas/monstergen.json -o src/schemas/monstergen.d.ts"
+    },
+    "devDependencies": {
+        "@sveltejs/vite-plugin-svelte": "^2.4.2",
+        "@tsconfig/svelte": "^5.0.0",
+        "json-schema-to-typescript": "^13.0.2",
+        "prettier": "^3.0.2",
+        "prettier-plugin-svelte": "^3.0.3",
+        "rimraf": "^5.0.1",
+        "svelte": "^4.0.5",
+        "svelte-check": "^3.4.6",
+        "tslib": "^2.6.0",
+        "typescript": "^5.0.2",
+        "vite": "^4.4.5"
+    },
+    "dependencies": {
+        "json-stringify-deterministic": "^1.0.11",
+        "svelte-markdown": "^0.3.0"
+    }
+}
