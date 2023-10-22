@@ -5,7 +5,7 @@
     import Card from "@/components/Card.svelte";
     import Modal from "@/components/Modal.svelte";
     import type { Tab } from "@/custom.types";
-    import { createEventDispatcher } from "svelte";
+    import { afterUpdate, createEventDispatcher } from "svelte";
     import { currMonster } from "@/stores/writeMonster";
     import { bestiary, existingCategories } from "@/stores/writeBestiary";
     import { toast } from "@zerodevx/svelte-toast";
@@ -59,9 +59,64 @@
             toast.push(`Failed to copy: ${err}`);
         }
     };
+
+    let htmlExport: string;
+    let eleMarkdown: HTMLDivElement;
+    afterUpdate(() => {
+        const html = `
+            <html>
+                <head>
+                    <meta charset='utf-8'>
+                    <title>HTML Export of Monster "${monster.name}"</title>
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                    <style>
+                        .tags {
+                            font-style: italic;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <img src="${monster.media}" alt="${monster.name}">
+                    <p>
+                        <b>${monster.name}</b> (<span class="tags">${monster.tags.general.join(", ")}</span>)
+                    </p>
+                    <p>
+                        ${monster.attack.name} (${monster.attack.damage})<br><span class="tags">${monster.tags.combat.join(", ")}</span>
+                    </p>
+                    <p>
+                        ${monster.hp} HP&emsp;${monster.armor} Armor
+                    </p>
+                    <p>
+                        <b>Special qualities:</b> <span class="tags">${monster.tags.special.join(", ")}</span>
+                    </p>
+                    <p>
+                        <b>Instinct:</b> ${monster.instinct}
+                    </p>
+                    <div>
+                        ${eleMarkdown !== undefined ? eleMarkdown.outerHTML : ""}
+                    </div>
+                </body>
+            </html>
+        `;
+        htmlExport = html; // 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(html);
+    });
+
+    const copyHTMLtoClipboard = async () => {
+        try {
+            const item: ClipboardItem = new ClipboardItem({
+                "text/plain": new Blob([stringify(monster)], {type: "text/plain"}),
+                "text/html": new Blob([htmlExport], {type: "text/html"}),
+            });
+            await navigator.clipboard.write([item]);
+            toast.push(`HTML version of monster "${monster.name}" copied to clipboard`);
+        } catch (err) {
+            toast.push(`Failed to copy: ${err}`);
+        }
+    };
+
 </script>
 
-<Card title="{monster.name}" expanded="{false}">
+<Card  title="{monster.name}" expanded="{false}">
     <div class="media">
         <div class="media-left" on:click="{() => (showModal = true)}">
             <figure>
@@ -157,7 +212,7 @@
                 </div>
             </div>
             <hr />
-            <div class="content">
+            <div class="content" bind:this={eleMarkdown}>
                 {#if monster.description !== undefined}
                     <SvelteMarkdown source="{monster.description}" />
                 {/if}
@@ -172,7 +227,10 @@
     </div>
     <footer class="card-footer">
         <a href="#" class="card-footer-item" on:click="{copyToClipboard}"
-            >Share</a
+            >Copy JSON</a
+        >
+        <a href="#" class="card-footer-item" on:click="{copyHTMLtoClipboard}"
+            >Copy HTML</a
         >
         <a
             href="#"
