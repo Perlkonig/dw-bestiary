@@ -8,6 +8,8 @@
     import { createEventDispatcher } from "svelte";
     import { currMonster } from "@/stores/writeMonster";
     import { bestiary, existingCategories } from "@/stores/writeBestiary";
+    import { toast } from "@zerodevx/svelte-toast";
+    import stringify from "json-stringify-deterministic";
 
     const dispatch = createEventDispatcher<{ switch: { tab: Tab } }>();
     export let monster: Monster;
@@ -20,12 +22,14 @@
     const handleLoad = () => {
         $currMonster = JSON.parse(JSON.stringify(monster));
         dispatch("switch", { tab: "view" });
+        toast.push("Monster loaded. Ready for editing.");
     };
 
     const handleDelete = () => {
         bestiary.set($bestiary.filter((m) => m.name !== monster.name));
         $bestiary = $bestiary;
         showDelModal = false;
+        toast.push(`Monster "${monster.name}" deleted from the bestiary!`);
     };
 
     const handleCategoryChange = () => {
@@ -38,12 +42,22 @@
             monster = monster;
             const rest = $bestiary.filter((m) => m.name !== monster.name);
             bestiary.set([...rest, JSON.parse(JSON.stringify(monster))]);
+            toast.push(`Monster "${monster.name}" moved to "${cat}"`);
         } else {
-            alert(
+            toast.push(
                 `Category names may not start with an underscore or contain any spaces.`,
             );
         }
         showSaveModal = false;
+    };
+
+    const copyToClipboard = async () => {
+        try {
+            await navigator.clipboard.writeText(stringify(monster));
+            toast.push(`Monster "${monster.name}" copied to clipboard`);
+        } catch (err) {
+            toast.push(`Failed to copy: ${err}`);
+        }
     };
 </script>
 
@@ -157,6 +171,9 @@
         </div>
     </div>
     <footer class="card-footer">
+        <a href="#" class="card-footer-item" on:click="{copyToClipboard}"
+            >Share</a
+        >
         <a
             href="#"
             class="card-footer-item"

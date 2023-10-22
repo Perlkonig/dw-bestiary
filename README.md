@@ -1,6 +1,6 @@
 # Dungeon World Bestiary & Monster Generator
 
-A tool for generating and cataloging custom Dungeon World monsters. Also incorporates Jeremy Strandberg's excellent [monster generation tool](https://spoutinglore.blogspot.com/2018/07/monster-creation-cheatsheet.html), licensed under the Creative Commons Attribution 3.0 Unported License.
+A tool for generating and cataloging custom Dungeon World monsters. Also incorporates Jeremy Strandberg's excellent [monster generation checklist](https://spoutinglore.blogspot.com/2018/07/monster-creation-cheatsheet.html), licensed under the Creative Commons Attribution 3.0 Unported License.
 
 Demo: <https://www.perlkonig.com/bestiary>
 

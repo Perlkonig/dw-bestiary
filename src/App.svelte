@@ -4,6 +4,7 @@
     import Bestiary from "./components/Bestiary.svelte";
     import Footer from "@/components/Footer.svelte";
     import type { Tab } from "@/custom.types";
+    import { SvelteToast } from "@zerodevx/svelte-toast";
 
     let activeTab: Tab = "question";
 
@@ -13,14 +14,9 @@
 </script>
 
 <main class="container p-6">
-    <div class="level">
-        <div class="level-left">
-            <div class="level-item">
-                <div>
-                    <p class="title">Dungeon World Bestiary</p>
-                </div>
-            </div>
-        </div>
+    <div class="content">
+        <p class="title">Dungeon World Bestiary</p>
+        <p class="subtitle">Version {__APP_VERSION__}</p>
     </div>
 
     <div class="tabs">
@@ -48,6 +44,7 @@
 
     <Footer />
 </main>
+<SvelteToast />
 
 <style>
     /* .logo {

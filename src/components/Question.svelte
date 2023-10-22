@@ -6,6 +6,7 @@
     import { onMount } from "svelte";
     import type { Tab } from "@/custom.types";
     import { createEventDispatcher } from "svelte";
+    import { toast } from "@zerodevx/svelte-toast";
 
     const dispatch = createEventDispatcher<{ switch: { tab: Tab } }>();
     let knownForSorted: [string, string][];
@@ -24,6 +25,7 @@
 
     const resetForm = () => {
         lastQuestion.set(blankQuestion);
+        toast.push("Form reset");
     };
 
     const generate = () => {
@@ -331,6 +333,7 @@
         $lastGen = JSON.parse(JSON.stringify(monster));
         $currMonster = monster;
         dispatch("switch", { tab: "view" });
+        toast.push("Monster generated. Ready for editing!");
     };
 
     const knownForVals: Map<string, string> = new Map<string, string>([

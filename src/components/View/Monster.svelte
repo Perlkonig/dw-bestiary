@@ -17,6 +17,7 @@
     import { lastGen } from "@/stores/writeLastGen";
     import type { Tab } from "@/custom.types";
     import { createEventDispatcher } from "svelte";
+    import { toast } from "@zerodevx/svelte-toast";
 
     const dispatch = createEventDispatcher<{ switch: { tab: Tab } }>();
     export let expandable = false;
@@ -146,12 +147,13 @@
             $bestiary.push(JSON.parse(JSON.stringify($monster)));
             $bestiary = $bestiary;
             $lastGen = null;
+            toast.push(`Saved to the bestiary under the category "${cat}"`);
         } else if ($existingNames.includes($monster.name)) {
-            alert(
+            toast.push(
                 `Unable to save to bestiary because a creature already exists with that name.`,
             );
         } else {
-            alert(
+            toast.push(
                 `Category names may not start with an underscore or contain any spaces.`,
             );
         }
@@ -164,6 +166,7 @@
             $bestiary[idx] = JSON.parse(JSON.stringify($monster));
             $bestiary = $bestiary;
         }
+        toast.push("Changes saved");
     };
 
     const revertToGen = () => {
@@ -174,6 +177,7 @@
                 $monster.category.length === 0)
         ) {
             monster.set(JSON.parse(JSON.stringify($lastGen)));
+            toast.push("Monster reset to generated state");
         }
     };
 
@@ -181,6 +185,15 @@
         monster.set(JSON.parse(JSON.stringify(blankMonster)));
         $lastGen = null;
         dispatch("switch", { tab: "question" });
+        toast.push("Monster cleared. Starting over.");
+    };
+
+    let savedJson: string;
+    let showLoadModal = false;
+    const handleLoad = () => {
+        $monster = JSON.parse(savedJson);
+        toast.push("Monster loaded from JSON. Ready to edit.");
+        showLoadModal = false;
     };
 </script>
 
@@ -241,6 +254,7 @@
                                 type="text"
                                 bind:value="{$monster.name}"
                                 on:blur="{() => (editMode = undefined)}"
+                                autofocus
                             />
                         </div>
                     {:else}
@@ -261,6 +275,7 @@
                                 type="text"
                                 bind:value="{tagsGeneralFlat}"
                                 on:blur="{handleGeneralTagChange}"
+                                autofocus
                             />
                         </div>
                     {:else}
@@ -288,6 +303,7 @@
                                     class="input"
                                     type="text"
                                     bind:value="{$monster.attack.name}"
+                                    autofocus
                                 />
                             </div>
                             <div class="control">
@@ -340,6 +356,7 @@
                                 min="1"
                                 bind:value="{$monster.hp}"
                                 on:blur="{() => (editMode = undefined)}"
+                                autofocus
                             />
                         </div>
                     {:else}
@@ -360,6 +377,7 @@
                                 min="1"
                                 bind:value="{$monster.armor}"
                                 on:blur="{() => (editMode = undefined)}"
+                                autofocus
                             />
                         </div>
                     {:else}
@@ -381,6 +399,7 @@
                                 type="text"
                                 bind:value="{tagsSpecialFlat}"
                                 on:blur="{handleSpecialTagChange}"
+                                autofocus
                             />
                         </div>
                     {:else}
@@ -404,6 +423,7 @@
                                 type="text"
                                 bind:value="{$monster.instinct}"
                                 on:blur="{() => (editMode = undefined)}"
+                                autofocus
                             />
                         </div>
                     {:else}
@@ -426,6 +446,7 @@
                             class="textarea"
                             bind:value="{$monster.description}"
                             on:blur="{() => (editMode = undefined)}"
+                            autofocus
                         ></textarea>
                     </div>
                 {:else}
@@ -443,6 +464,7 @@
                             class="textarea"
                             bind:value="{movesFlat}"
                             on:blur="{handleMoveChange}"
+                            autofocus
                         ></textarea>
                     </div>
                     <p class="help">One move per line. Blank lines are fine.</p>
@@ -476,6 +498,11 @@
                 >Save to Bestiary</button
             >
         {/if}
+    </div>
+    <div class="level-item">
+        <button class="button" on:click="{() => (showLoadModal = true)}"
+            >Load from JSON</button
+        >
     </div>
     {#if $lastGen !== null && $currCategory === undefined}
         <div class="level-item">
@@ -566,6 +593,30 @@
             >
         </div>
     {/if}
+</Modal>
+
+<Modal
+    title="Load JSON"
+    show="{showLoadModal}"
+    buttons="{[
+        {
+            label: 'Load',
+            style: 'is-success',
+            callback: handleLoad,
+        },
+        {
+            label: 'Close',
+            callback: () => (showModal = false),
+        },
+    ]}"
+>
+    <div class="field">
+        <label class="label" for="savedJSON">Paste saved JSON</label>
+        <div class="control">
+            <textarea class="textarea" id="savedJSON" bind:value="{savedJson}"
+            ></textarea>
+        </div>
+    </div>
 </Modal>
 
 <style>
