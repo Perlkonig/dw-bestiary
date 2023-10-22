@@ -6,4 +6,7 @@
     const dispatch = createEventDispatcher<{ switch: { tab: Tab } }>();
 </script>
 
+<div class="content">
+    <p>Click on an element to edit it.</p>
+</div>
 <Monster on:switch />
