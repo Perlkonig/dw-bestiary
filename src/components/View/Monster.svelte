@@ -606,7 +606,7 @@
         },
         {
             label: 'Close',
-            callback: () => (showModal = false),
+            callback: () => (showLoadModal = false),
         },
     ]}"
 >
