@@ -1,8 +1,12 @@
 {
-    "name": "dw-monstergen",
+    "name": "dw-bestiary",
     "private": true,
     "version": "1.0.0",
     "type": "module",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Perlkonig/dw-bestiary"
+    },
     "scripts": {
         "dev": "set NODE_ENV=development && vite --host",
         "build": "npx rimraf dist && set NODE_ENV=production && vite build --base=/bestiary",

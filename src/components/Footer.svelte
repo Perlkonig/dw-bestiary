@@ -3,7 +3,7 @@
         <p>
             Fork me on
             <a
-                href="https://github.com/Perlkonig/dw-monstergen"
+                href="https://github.com/Perlkonig/dw-bestiary"
                 target="_blank"
                 rel="noreferrer"
             >
