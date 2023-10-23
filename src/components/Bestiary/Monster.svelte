@@ -89,9 +89,6 @@
                     <p>
                         <b>Special qualities:</b> <span class="tags">${monster.tags.special.join(", ")}</span>
                     </p>
-                    <p>
-                        <b>Instinct:</b> ${monster.instinct}
-                    </p>
                     <div>
                         ${eleMarkdown !== undefined ? eleMarkdown.outerHTML : ""}
                     </div>
@@ -204,24 +201,21 @@
             </div>
             <div class="columns">
                 <div class="column">
-                    <div class="content">
+                    <div class="content" bind:this="{eleMarkdown}">
                         <p>
                             <b>Instinct: </b><i>{monster.instinct}</i>
                         </p>
+                    {#if monster.moves !== undefined && monster.moves.length > 0}
+                        <Moves moves="{monster.moves}" />
+                    {:else}
+                        <p><i>No special moves.</i></p>
+                    {/if}
+                    {#if monster.description !== undefined}
+                        <hr />
+                        <SvelteMarkdown source="{monster.description}" />
+                    {/if}
                     </div>
                 </div>
-            </div>
-            <hr />
-            <div class="content" bind:this={eleMarkdown}>
-                {#if monster.description !== undefined}
-                    <SvelteMarkdown source="{monster.description}" />
-                {/if}
-                {#if monster.moves !== undefined && monster.moves.length > 0}
-                    <p><b>Moves:</b></p>
-                    <Moves moves="{monster.moves}" />
-                {:else}
-                    <p><i>No special moves.</i></p>
-                {/if}
             </div>
         </div>
     </div>

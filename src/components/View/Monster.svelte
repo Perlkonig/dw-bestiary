@@ -415,7 +415,8 @@
                 </div>
             </div>
             <div class="columns">
-                <div class="column" on:click="{() => (editMode = 'instinct')}">
+                <div class="column">
+                    <div on:click="{() => (editMode = 'instinct')}">
                     {#if editMode === "instinct"}
                         <div class="control">
                             <input
@@ -433,6 +434,28 @@
                             </p>
                         </div>
                     {/if}
+                    </div>
+                    <div on:click="{() => (editMode = 'moves')}">
+                        {#if editMode === "moves"}
+                            <div class="control">
+                                <textarea
+                                    class="textarea"
+                                    bind:value="{movesFlat}"
+                                    on:blur="{handleMoveChange}"
+                                    autofocus
+                                ></textarea>
+                            </div>
+                            <p class="help">One move per line. Blank lines are fine.</p>
+                        {:else}
+                            <div class="content">
+                                {#if $monster.moves !== undefined && $monster.moves.length > 0}
+                                    <Moves moves="{$monster.moves}" />
+                                {:else}
+                                    <p><i>No special moves.</i></p>
+                                {/if}
+                            </div>
+                        {/if}
+                    </div>
                 </div>
             </div>
             <hr />
@@ -453,28 +476,6 @@
                     <div class="content">
                         {#if $monster.description !== undefined}
                             <SvelteMarkdown source="{$monster.description}" />
-                        {/if}
-                    </div>
-                {/if}
-            </div>
-            <div on:click="{() => (editMode = 'moves')}">
-                {#if editMode === "moves"}
-                    <div class="control">
-                        <textarea
-                            class="textarea"
-                            bind:value="{movesFlat}"
-                            on:blur="{handleMoveChange}"
-                            autofocus
-                        ></textarea>
-                    </div>
-                    <p class="help">One move per line. Blank lines are fine.</p>
-                {:else}
-                    <div class="content">
-                        {#if $monster.moves !== undefined && $monster.moves.length > 0}
-                            <p><b>Moves:</b></p>
-                            <Moves moves="{$monster.moves}" />
-                        {:else}
-                            <p><i>No special moves.</i></p>
                         {/if}
                     </div>
                 {/if}
