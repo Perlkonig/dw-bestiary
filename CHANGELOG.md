@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 -   Moved the list of moves after the instinct, as it appears in the source book.
 
+-   Bestiary is now properly sorted by name!
+
 ## [v1.1.0] - 2023-10-22
 
 ### Added

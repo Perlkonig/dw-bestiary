@@ -19,7 +19,9 @@
     let jsonDataStr: string;
     afterUpdate(() => {
         for (const cat of $existingCategories) {
-            catMap[cat] = $bestiary.filter((m) => m.category === cat);
+            catMap[cat] = $bestiary
+                .filter((m) => m.category === cat)
+                .sort((a, b) => a.name.localeCompare(b.name));
         }
         jsonDataStr =
             "data:text/json;charset=utf-8," +
