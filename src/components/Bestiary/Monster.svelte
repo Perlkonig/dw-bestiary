@@ -78,19 +78,33 @@
                 <body>
                     <img src="${monster.media}" alt="${monster.name}">
                     <p>
-                        <b>${monster.name}</b> (<span class="tags">${monster.tags.general.join(", ")}</span>)
+                        <b>${
+                            monster.name
+                        }</b> (<span class="tags">${monster.tags.general.join(
+                            ", ",
+                        )}</span>)
                     </p>
                     <p>
-                        ${monster.attack.name} (${monster.attack.damage})<br><span class="tags">${monster.tags.combat.join(", ")}</span>
+                        ${monster.attack.name} (${
+                            monster.attack.damage
+                        })<br><span class="tags">${monster.tags.combat.join(
+                            ", ",
+                        )}</span>
                     </p>
                     <p>
                         ${monster.hp} HP&emsp;${monster.armor} Armor
                     </p>
                     <p>
-                        <b>Special qualities:</b> <span class="tags">${monster.tags.special.join(", ")}</span>
+                        <b>Special qualities:</b> <span class="tags">${monster.tags.special.join(
+                            ", ",
+                        )}</span>
                     </p>
                     <div>
-                        ${eleMarkdown !== undefined ? eleMarkdown.outerHTML : ""}
+                        ${
+                            eleMarkdown !== undefined
+                                ? eleMarkdown.outerHTML
+                                : ""
+                        }
                     </div>
                 </body>
             </html>
@@ -101,19 +115,22 @@
     const copyHTMLtoClipboard = async () => {
         try {
             const item: ClipboardItem = new ClipboardItem({
-                "text/plain": new Blob([stringify(monster)], {type: "text/plain"}),
-                "text/html": new Blob([htmlExport], {type: "text/html"}),
+                "text/plain": new Blob([stringify(monster)], {
+                    type: "text/plain",
+                }),
+                "text/html": new Blob([htmlExport], { type: "text/html" }),
             });
             await navigator.clipboard.write([item]);
-            toast.push(`HTML version of monster "${monster.name}" copied to clipboard`);
+            toast.push(
+                `HTML version of monster "${monster.name}" copied to clipboard`,
+            );
         } catch (err) {
             toast.push(`Failed to copy: ${err}`);
         }
     };
-
 </script>
 
-<Card  title="{monster.name}" expanded="{false}">
+<Card title="{monster.name}" expanded="{false}">
     <div class="media">
         <div class="media-left" on:click="{() => (showModal = true)}">
             <figure>
@@ -205,15 +222,15 @@
                         <p>
                             <b>Instinct: </b><i>{monster.instinct}</i>
                         </p>
-                    {#if monster.moves !== undefined && monster.moves.length > 0}
-                        <Moves moves="{monster.moves}" />
-                    {:else}
-                        <p><i>No special moves.</i></p>
-                    {/if}
-                    {#if monster.description !== undefined}
-                        <hr />
-                        <SvelteMarkdown source="{monster.description}" />
-                    {/if}
+                        {#if monster.moves !== undefined && monster.moves.length > 0}
+                            <Moves moves="{monster.moves}" />
+                        {:else}
+                            <p><i>No special moves.</i></p>
+                        {/if}
+                        {#if monster.description !== undefined}
+                            <hr />
+                            <SvelteMarkdown source="{monster.description}" />
+                        {/if}
                     </div>
                 </div>
             </div>

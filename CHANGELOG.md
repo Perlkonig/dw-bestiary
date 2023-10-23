@@ -9,13 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-* Moved the list of moves after the instinct, as it appears in the source book.
+-   Moved the list of moves after the instinct, as it appears in the source book.
 
 ## [v1.1.0] - 2023-10-22
 
 ### Added
 
-* Added a "Copy to HTML" version so you can paste monsters into apps like Word and OneNote.
+-   Added a "Copy to HTML" version so you can paste monsters into apps like Word and OneNote.
 
 ## [v1.0.0] - 2023-10-22
 

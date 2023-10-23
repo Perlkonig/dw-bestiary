@@ -417,23 +417,23 @@
             <div class="columns">
                 <div class="column">
                     <div on:click="{() => (editMode = 'instinct')}">
-                    {#if editMode === "instinct"}
-                        <div class="control">
-                            <input
-                                class="input"
-                                type="text"
-                                bind:value="{$monster.instinct}"
-                                on:blur="{() => (editMode = undefined)}"
-                                autofocus
-                            />
-                        </div>
-                    {:else}
-                        <div class="content">
-                            <p>
-                                <b>Instinct: </b><i>{$monster.instinct}</i>
-                            </p>
-                        </div>
-                    {/if}
+                        {#if editMode === "instinct"}
+                            <div class="control">
+                                <input
+                                    class="input"
+                                    type="text"
+                                    bind:value="{$monster.instinct}"
+                                    on:blur="{() => (editMode = undefined)}"
+                                    autofocus
+                                />
+                            </div>
+                        {:else}
+                            <div class="content">
+                                <p>
+                                    <b>Instinct: </b><i>{$monster.instinct}</i>
+                                </p>
+                            </div>
+                        {/if}
                     </div>
                     <div on:click="{() => (editMode = 'moves')}">
                         {#if editMode === "moves"}
@@ -445,7 +445,9 @@
                                     autofocus
                                 ></textarea>
                             </div>
-                            <p class="help">One move per line. Blank lines are fine.</p>
+                            <p class="help">
+                                One move per line. Blank lines are fine.
+                            </p>
                         {:else}
                             <div class="content">
                                 {#if $monster.moves !== undefined && $monster.moves.length > 0}
