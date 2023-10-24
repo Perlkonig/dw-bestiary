@@ -555,25 +555,6 @@
             </div>
         {/if}
         <div class="field">
-            <label class="label" for="instinct"
-                >What is your creature's instinct?</label
-            >
-            <div class="control">
-                <input
-                    class="input"
-                    type="text"
-                    id="instinct"
-                    bind:value="{$lastQuestion.instinct}"
-                />
-            </div>
-            <p class="help">
-                What does it do or want that causes problems for others? Write
-                it as an intended action (e.g. <i
-                    >to consume the flesh of innocents</i
-                >).
-            </p>
-        </div>
-        <div class="field">
             <label class="label" for="qualities"
                 >Describe any special qualities based on what it's known for</label
             >
@@ -590,6 +571,25 @@
                 include useful adaptations (e.g., <i>winged</i>,
                 <i>amphibious</i>), a description of what makes it terrifying,
                 or what the purpose of its creation was.
+            </p>
+        </div>
+        <div class="field">
+            <label class="label" for="instinct"
+                >What is your creature's instinct?</label
+            >
+            <div class="control">
+                <input
+                    class="input"
+                    type="text"
+                    id="instinct"
+                    bind:value="{$lastQuestion.instinct}"
+                />
+            </div>
+            <p class="help">
+                What does it do or want that causes problems for others? Write
+                it as an intended action (e.g. <i
+                    >to consume the flesh of innocents</i
+                >).
             </p>
         </div>
         <div class="field">
